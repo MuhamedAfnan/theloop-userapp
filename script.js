@@ -84,27 +84,22 @@ function showstation(){
 </ul>
 </div>
 
-<div class="table-data">
-	<div class="order">
-		<div id = "mymap"class="head">
-			<h3>Map</h3>
-			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-lJgFVLO+Tn1eI63awtaAgnGJDbW7NV8GvR+ewr+zJn1HPeW1A8+L/wyJ7VoDAdtx" crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-Q4QY+2VDfj/sK0C2PTZmBcP27Gp8h6wjsHFT+0N09TCd94Srvm9Z3c6oaNTd6S/a" crossorigin=""></script>
-
+<div class="mapbox">
+		<div class="head">
+			<h3 style='margin:5px'>Map</h3>
 		</div>
+		<div  id = "mymap"></div>
 		
-	</div>
-	
-</div>`
-var mymap = L.map('map').setView([51.505, -0.09], 13);
+</div>
+`
+var map = L.map('mymap').setView([9.9816, 76.2999], 13);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-    maxZoom: 18
-}).addTo(mymap);
-
-L.marker([51.5, -0.09]).addTo(mymap)
-    .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+var marker = L.marker([9.9816, 76.2999]).addTo(map);
+marker.bindPopup("Pearl Station").openPopup();
 
 }
 
