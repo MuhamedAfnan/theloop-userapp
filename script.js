@@ -223,7 +223,7 @@ function showchat(){
 	const form = document.getElementById("chat-form");
 const input = document.getElementById("chat-input");
 const messages = document.getElementById("chat-messages");
-const apiKey = "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";
+const apiKey = "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";
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();

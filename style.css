@@ -473,8 +473,8 @@ body {
 	margin-bottom: 0;
 }
 .chatbox {
-	width: 300px;
-	height: 400px;
+	width: auto;
+	height: 300px;
 	border: 1px solid black;
 	overflow-y: scroll;
 	display: flex;
@@ -579,6 +579,7 @@ body {
 
 #chat-window {
 	width: 500px;
+	height: 600px;
 	margin: 0 auto;
 	background-color:var(--green);
 	padding: 20px;
@@ -624,7 +625,7 @@ body {
 	}
   }
   button[type="submit"] {
-	padding: 10px 20px;
+	padding: 8px 20px;
 	border-radius: 10px;
 	background-color: #f7efe5;
 	color: #42be2c;
@@ -648,12 +649,12 @@ body {
   }
   .bot-message {
 	font-family: "Roboto", sans-serif;
-	background-color: #fffbf5; /* different light color */
+	background-color: #e0f996; /* different light color */
 	text-align: justify; /* keep it right-aligned */
 	padding: 15px; /* added padding */
 	margin-top: 10px; /* added margin-top to create a gap */
 	margin-bottom: 10px;
-	display: flex;
+	display: inline-block;
 	align-items: center;
 	
   }
