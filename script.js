@@ -309,7 +309,7 @@ bookingForm.addEventListener('submit', (e) => {
 	item = document.createElement('li')
 	item.setAttribute('id','bookedlistitems')
 
-	item.textContent = selectedDate
+	item.textContent = selectedDate.split("T")[0] 
 	booklist.appendChild(item)
 
   }
@@ -331,7 +331,7 @@ slotsList.setAttribute('id','bookedlist')
 for (let slot of bookedSlots) {
   const slotItem = document.createElement('li');
   slotItem.setAttribute('id','bookedlistitems')
-  slotItem.textContent = slot;
+  slotItem.textContent = slot.split("T")[0];
   slotsList.appendChild(slotItem);
 }
 
