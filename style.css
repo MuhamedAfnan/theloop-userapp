@@ -579,10 +579,11 @@ body {
 
 #chat-window {
 	width: 500px;
-	top : 20%;
+	height: auto;
 	margin: 0 auto;
 	background-color:var(--green);
 	padding: 20px;
+	padding-bottom: 5px;
 	border-radius: 10px;
 	margin-top: 50px;
   }
