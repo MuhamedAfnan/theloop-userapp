@@ -649,7 +649,7 @@ body {
   }
   .bot-message {
 	font-family: "Roboto", sans-serif;
-	background-color: #e0f996; /* different light color */
+	background-color: #ccf996; /* different light color */
 	text-align: justify; /* keep it right-aligned */
 	padding: 15px; /* added padding */
 	margin-top: 10px; /* added margin-top to create a gap */
