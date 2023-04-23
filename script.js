@@ -269,24 +269,10 @@ mainform.appendChild(slotsList);
 
 function quit() {
 	var content = document.getElementById("main");
-	window.close();
-}
-function showanalytics() {
-	var content = document.getElementById("main");
-	sidebar.classList.toggle('hide');
 	content.innerHTML = ` <div class="head-title">
 	<div class="left">
-		<h1>Analytics</h1>
-		<ul class="breadcrumb">
-			<li>
-				<a href="#">Loop</a>
-			</li>
-			<li><i class='bx bx-chevron-right' ></i></li>
-			<li>
-				<a class="active" href="#">Analyse</a>
-			</li>
-		</ul>
+		<h1>Logged Out</h1>
+		
 	</div>
 	</div>`
-
 }
