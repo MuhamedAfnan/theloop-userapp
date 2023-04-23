@@ -276,3 +276,7 @@ function quit() {
 	</div>
 	</div>`
 }
+
+window.onload = function() {
+	document.getElementById("stat").click();
+}
