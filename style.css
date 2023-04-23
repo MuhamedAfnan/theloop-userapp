@@ -530,7 +530,7 @@ body {
 
 
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: px) {
 	#content nav form .form-input input {
 		display: none;
 	}
@@ -579,7 +579,7 @@ body {
 
 #chat-window {
 	width: 500px;
-	height: auto;
+	height: 500px;
 	margin: 0 auto;
 	background-color:var(--green);
 	padding: 20px;
@@ -606,7 +606,7 @@ body {
   
   #chat-input {
 	flex-grow: 1;
-	padding: 10px;
+	padding: 15px;
 	margin-right: 10px;
 	border-radius: 10px;
 	border: 1px solid #ccc;
@@ -628,7 +628,6 @@ body {
 	}
   }
   button[type="submit"] {
-	padding: 8px 20px;
 	border-radius: 10px;
 	background-color: #f7efe5;
 	color: #42be2c;
