@@ -92,87 +92,9 @@ function showstation(){
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-Q4QY+2VDfj/sK0C2PTZmBcP27Gp8h6wjsHFT+0N09TCd94Srvm9Z3c6oaNTd6S/a" crossorigin=""></script>
 
 		</div>
-		<!-- <table>
-			<thead>
-				<tr>
-					<th>User</th>
-					<th>Date Order</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<img src="img/people.png">
-						<p>John Doe</p>
-					</td>
-					<td>01-10-2021</td>
-					<td><span class="status completed">Completed</span></td>
-				</tr>
-				<tr>
-					<td>
-						<img src="img/people.png">
-						<p>John Doe</p>
-					</td>
-					<td>01-10-2021</td>
-					<td><span class="status pending">Pending</span></td>
-				</tr>
-				<tr>
-					<td>
-						<img src="img/people.png">
-						<p>John Doe</p>
-					</td>
-					<td>01-10-2021</td>
-					<td><span class="status process">Process</span></td>
-				</tr>
-				<tr>
-					<td>
-						<img src="img/people.png">
-						<p>John Doe</p>
-					</td>
-					<td>01-10-2021</td>
-					<td><span class="status pending">Pending</span></td>
-				</tr>
-				<tr>
-					<td>
-						<img src="img/people.png">
-						<p>John Doe</p>
-					</td>
-					<td>01-10-2021</td>
-					<td><span class="status completed">Completed</span></td>
-				</tr>
-			</tbody>
-		</table> -->
+		
 	</div>
-	<div class="todo">
-		<div class="head">
-			<h3>Availability</h3>
-			<!-- <i class='bx bx-plus' ></i>
-			<i class='bx bx-filter' ></i> -->
-		</div>
-		<!-- <ul class="todo-list">
-			<li class="completed">
-				<p>Todo List</p>
-				<i class='bx bx-dots-vertical-rounded' ></i>
-			</li>
-			<li class="completed">
-				<p>Todo List</p>
-				<i class='bx bx-dots-vertical-rounded' ></i>
-			</li>
-			<li class="not-completed">
-				<p>Todo List</p>
-				<i class='bx bx-dots-vertical-rounded' ></i>
-			</li>
-			<li class="completed">
-				<p>Todo List</p>
-				<i class='bx bx-dots-vertical-rounded' ></i>
-			</li>
-			<li class="not-completed">
-				<p>Todo List</p>
-				<i class='bx bx-dots-vertical-rounded' ></i>
-			</li>
-		</ul> -->
-	</div>
+	
 </div>`
 var mymap = L.map('map').setView([51.505, -0.09], 13);
 
@@ -347,7 +269,7 @@ mainform.appendChild(slotsList);
 
 function quit() {
 	var content = document.getElementById("main");
-	content.innerHTML = ` `
+	window.close();
 }
 function showanalytics() {
 	var content = document.getElementById("main");
