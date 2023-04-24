@@ -190,7 +190,7 @@ function showchat(){
 			const chatInput = document.getElementById("chat-input");
 			const chatSend = document.getElementById("chat-send");
 			
-			const openaiApiKey = "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";
+			const openaiApiKey = "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";
 			const engine = "davinci";
 			
 			chatSend.addEventListener("click", function() {
