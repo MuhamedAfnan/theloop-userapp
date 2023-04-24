@@ -577,131 +577,74 @@ body {
 
 /*css chat*/
 
-#chat-window {
-	width: 500px;
-	height: auto;
+.chatbot-container {
+	max-width: 500px;
 	margin: 0 auto;
-	background-color:var(--green);
-	padding: 20px;
-	margin-top: 10px;
-	padding-bottom: 0;
+	background-color: #eee;
 	border-radius: 10px;
-	margin-top: 50px;
-  }
-  
-  #chat-messages {
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chatbot-header {
+	background-color: var(--green);
+	color: white;
 	padding: 10px;
-	margin-bottom: 10px;
-	border-bottom: 1px solid #ccc;
-	height: calc(100vh - 200px);
-	max-height: calc(100vh - 200px);
-	overflow: auto;
-  }
-  
-  #chat-form {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.chatbot-body {
+	padding: 10px;
+	height: 300px;
+	overflow-y: scroll;
+}
+
+.chatbot-footer {
 	display: flex;
 	align-items: center;
-	padding: 0;
-  }
-  
-  #chat-input {
-	flex-grow: 1;
 	padding: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#chat-input {
+	flex: 1;
 	margin-right: 10px;
-	border-radius: 10px;
-	border: 1px solid #ccc;
-  }
-  @media (max-width: 600px) {
-	#chat-input {
-	  font-size: 14px;
-	  width: 100%;
-	  padding: 8px;
-	}
-  }
-  
-  /* Styles for larger screens */
-  @media (min-width: 1200px) {
-	#message-input {
-	  font-size: 18px;
-	  width: 70%;
-	  padding: 12px;
-	}
-  }
-  button[type="submit"] {
-	padding: 8px 20px;
-	border-radius: 10px;
-	background-color: #f7efe5;
-	color: #42be2c;
+	padding: 5px;
+	border-radius: 5px;
 	border: none;
-	font-size: 100%;
-	font-weight: bold;
-  }
-  @media (max-width: 600px) {
-	button[type="submit"] {
-	  font-size: 4px;
-	  padding: 5px 12px;
-	}
-  }
-  
-  /* Styles for larger screens */
-  @media (min-width: 1200px) {
-	button[type="submit"] {
-	  font-size: 24px;
-	  padding: 12px 24px;
-	}
-  }
-  .bot-message {
-	font-family: "Roboto", sans-serif;
-	background-color: #ccf996; /* different light color */
-	text-align: justify; /* keep it right-aligned */
-	padding: 15px; /* added padding */
-	margin-top: 10px; /* added margin-top to create a gap */
-	margin-bottom: 10px;
-	display: inline-block;
-	align-items: center;
-	min-width: 99%;
-	width:max-content;
-	
-  }
-  
-  .user-message {
-	font-family: "Nunito", sans-serif;
-	background-color: #ffffff; /* light color */
-	text-align: left; /* changed text align to left */
-	padding: 15px; /* added padding */
-	display: flex;
-	align-items: center;
-	min-width: 99%;
-	width:max-content;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
 
+#chat-send {
+	background-color: var(--green);
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
 
-  }
-  .user-message img{
-	width: 40px; /* adjust the width of the icon */
-	height: 40px; /* adjust the height of the icon */
-	margin-right: 20px; /* add some margin to separate the icon from the message */
-  }
-  .bot-message img {
-	width: 30px; /* adjust the width of the icon */
-	height: 40px; /* adjust the height of the icon */
-	margin-right: 20px; /* add some margin to separate the icon from the message */
+.chat-user-bubble {
+	background-color: #fff;
+	color: #333;
+	align-self: flex-start;
+	margin: 5px 0;
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
 
-  }
-  @media only screen and (min-device-width: 320px) and (max-device-width: 400px) {
-	#chat-window {
-	  width: 90%;
-	}
-  }
-  .main-title {
-	font-size: 1.5rem;
-	text-align: center;
-	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-	margin-bottom: 0.5rem;
-	color: #fffbf5;
-
-  }
-
-
+.chat-bot-bubble {
+	background-color: #f2f2f2;
+	color: #333;
+	align-self: flex-end;
+	margin: 5px 0;
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
   /* booking*/
 
   /* Style for the form */
@@ -799,9 +742,35 @@ body {
 	align-items: center;
 }
 
+.leaflet-routing-container{
+	display: none;
+}
+
 #mymap {
 	width:98%;
 	height : 98%;
 	border-radius: 5px ;
+}
+
+
+#pathinstructionlist{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	overflow-y: scroll;
+}
+.directionli{
+	background-color:white ;
+	border-radius: 3px;
+}
+.beegbox{
+	width: 100%;
+	height :max-content;
+	margin-top:20px;
+	background-color: white;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 

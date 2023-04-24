@@ -70,7 +70,7 @@ function showstation(){
 	<li>
 		<i class='bx bxs-group' ></i>
 		<span class="text">
-			<h3>7 km</h3>
+			<h3 id='distancetext'>7 km</h3>
 			<p>Distance</p>
 		</span>
 	</li>
@@ -89,93 +89,155 @@ function showstation(){
 			<h3 style='margin:5px'>Map</h3>
 		</div>
 		<div  id = "mymap"></div>
+
 		
+</div>
+
+<div class="beegbox">
+					<div class="head">
+						<h3>Path</h3>
+					</div>
+
+					<div id='pathinstruction'>
+					</div>
+					
 </div>
 `
 var map = L.map('mymap').setView([9.9816, 76.2999], 13);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+    maxZoom: 25,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
 var marker = L.marker([9.9816, 76.2999]).addTo(map);
 marker.bindPopup("Pearl Station").openPopup();
 
+
+navigator.geolocation.getCurrentPosition(function(position){
+	lat = position.coords.latitude
+	long = position.coords.longitude
+	console.log(lat,long)
+
+	var UserLocaiton = L.marker([lat,long]).addTo(map);
+	UserLocaiton.bindPopup("Your Location").openPopup();
+
+	L.Routing.control({
+		waypoints:   [
+		L.latLng(lat,long),
+		L.latLng(9.9816, 76.2999)
+		]
+	 }).on('routeselected', function(e) {
+        var route = e.route;
+		console.log(route)
+		showpathinbox(route)
+		document.getElementById("distancetext").textContent = Math.floor(route.summary.totalDistance / 1000).toString() + " KM"
+	}).addTo(map);
+
+});
+
 }
 
-
+async function showpathinbox(route){
+	listbox = document.getElementById("pathinstruction")
+	const pathlist = document.createElement('ol');
+	pathlist.setAttribute('id','pathinstructionlist')
+	count = 1
+	route.instructions.forEach(direction => {
+		var li = document.createElement("li")
+		li.setAttribute('class','directionli')
+		li.textContent = count + ". " + direction.text
+		pathlist.appendChild(li)
+		count += 1
+	});
+	listbox.appendChild(pathlist)
+}
 function showchat(){
-	var content = document.getElementById("main");
-	sidebar.classList.toggle('hide');
-	content.innerHTML = ` <div class="head-title">
-	<div class="left">
-		<h1>Loop Assistant</h1>
-		<ul class="breadcrumb">
-			<li>
-				<a href="#">Loop</a>
-			</li>
-			<li><i class='bx bx-chevron-right' ></i></li>
-			<li>
-				<a class="active" href="#">chatbot</a>
-			</li>
-		</ul>
-	</div>
+			var content = document.getElementById("main");
+			sidebar.classList.toggle('hide');
+			content.innerHTML = `<div class="head-title">
+			<div class="left">
+				<h1>Loop Assistant</h1>
+				<ul class="breadcrumb">
+					<li>
+						<a href="#">Loop</a>
+					</li>
+					<li><i class='bx bx-chevron-right' ></i></li>
+					<li>
+						<a class="active" href="#">chatbot</a>
+					</li>
+				</ul>
+			</div>
+				<div class="chatbot-container">
+					<div class="chatbot-header">
+						<h2>EV Charging Assistant</h2>
+					</div>
+					<div class="chatbot-body">
+						<ul id="chat-list"></ul>
+					</div>
+					<div class="chatbot-footer">
+						<input type="text" id="chat-input" placeholder="Type your message...">
+						<button id="chat-send">Send</button>
+					</div>
+				</div>
+
+				<style>
+				</style>
 	
-</div>
-	<div id="chat-window">
-	<div class="main-title">Hii , I am Loopy </div>
-	<div id="chat-messages"></div>
-	<form id="chat-form">
-	  <input
-		type="text"
-		id="chat-input"
-		autocomplete="off"
-		placeholder="Type your message here"
-		required
-	  />
-	  <button type="submit">Send</button>
-	</form>
-  </div>
-	`
-	const form = document.getElementById("chat-form");
-const input = document.getElementById("chat-input");
-const messages = document.getElementById("chat-messages");
-const apiKey = "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";
+			
+			`
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const message = input.value;
-  input.value = "";
+			const chatList = document.getElementById("chat-list");
+			const chatInput = document.getElementById("chat-input");
+			const chatSend = document.getElementById("chat-send");
+			
+			const openaiApiKey = "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";
+			const engine = "davinci";
+			
+			chatSend.addEventListener("click", function() {
+			  const userInput = chatInput.value;
+			  addMessageToChat("user", userInput);
+			  getChatbotResponse(userInput);
+			  chatInput.value = "";
+			});
 
-  messages.innerHTML += `<div class="message user-message">
-  <img src="./user.png" alt="user icon"> <span>${message}</span>
-  </div>`;
-
-  // Use axios library to make a POST request to the OpenAI APIn
-  const response = await axios.post(
-    "https://api.openai.com/v1/completions",
-    {
-      prompt: message,
-      model: "text-davinci-003",
-      temperature: 0,
-      max_tokens: 1000,
-      top_p: 1,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-    }
-  );
-  const chatbotResponse = response.data.choices[0].text;
-
-  messages.innerHTML += `<div class="message bot-message">
-  <img src="/chatbot.png" > <span>${chatbotResponse}</span>
-  </div>`;
-});
+						
+			async function getChatbotResponse(userInput) {
+				const prompt = `Conversation with an EV Charging Assistant, reply only as an electric vehicle charging assistant chatbot, for questions other than electric vehicle 'note : please reply as ask about electric vehicle' :\nUser: ${userInput}\nBot:`;
+				const maxTokens = 50;
+				const temperature = 0.7;
+				const topP = 1;
+				const n = 1;
+				const stop = "\n";
+				
+				const response = await fetch(`https://api.openai.com/v1/engines/${engine}/completions`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${openaiApiKey}`
+				},
+				body: JSON.stringify({
+					prompt: prompt,
+					max_tokens: maxTokens,
+					temperature: temperature,
+					top_p: topP,
+					n: n,
+					stop: stop
+				})
+				});
+				
+				const data = await response.json();
+				const chatbotResponse = data.choices[0].text.trim();
+				addMessageToChat("bot", chatbotResponse);
+			}
+			
+			function addMessageToChat(sender, message) {
+				const bubbleClass = (sender === "user") ? "chat-user-bubble" : "chat-bot-bubble";
+				const bubbleHTML = `<li class="${bubbleClass}">${message}</li>`;
+				chatList.innerHTML += bubbleHTML;
+				chatList.scrollTop = chatList.scrollHeight;
+			}
+			
+	
 }
 /* add customised ev bot */
 
